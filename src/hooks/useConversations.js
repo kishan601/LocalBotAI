@@ -1,5 +1,4 @@
-// src/hooks/useConversations.js
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import * as storageUtils from '../utils/storage';
 import { getCurrentTimestamp } from '../utils/date';
@@ -10,9 +9,13 @@ import { findResponseForQuestion } from '../data/sampleData';
  * @returns {Object} Conversation methods and state
  */
 const useConversations = () => {
-  const [conversations, setConversations] = useState(() => 
-    storageUtils.loadConversations()
-  );
+  const [conversations, setConversations] = useState([]);
+  
+  // Load conversations from localStorage on mount
+  useEffect(() => {
+    const loadedConversations = storageUtils.loadConversations();
+    setConversations(loadedConversations);
+  }, []);
   
   const [currentConversation, setCurrentConversation] = useState(null);
   const [filter, setFilter] = useState({});
@@ -160,6 +163,13 @@ const useConversations = () => {
   const applyFilter = useCallback((newFilter) => {
     setFilter(newFilter);
   }, []);
+
+  // Ensure conversations are saved to localStorage whenever they change
+  useEffect(() => {
+    if (conversations.length > 0) {
+      storageUtils.saveConversations(conversations);
+    }
+  }, [conversations]);
 
   return {
     conversations,

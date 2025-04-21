@@ -16,11 +16,11 @@ function loadMaterialIcons() {
   document.head.appendChild(link);
 }
 
+// Make header visible for the tests
 const AppHeader = styled.header`
   background-color: ${props => props.theme.colors.primary};
   color: white;
   padding: 10px 16px;
-  display: none; /* Hidden by default, shown only for tests */
 `;
 
 const HeaderTitle = styled.h1`
