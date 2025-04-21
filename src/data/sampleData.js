@@ -123,5 +123,5 @@ export const findResponseForQuestion = (question) => {
   }
   
   // Default response if no match is found
-  return "I don't have specific information about that topic, but I can help you with web development concepts if you ask about APIs, promises, React, authentication, and more.";
+  return "Sorry, Did not understand your query!";
 };
