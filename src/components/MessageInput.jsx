@@ -4,20 +4,19 @@ import styled from 'styled-components';
 const Form = styled.form`
   display: flex;
   gap: 8px;
-  align-items: flex-end;
+  align-items: center;
 `;
 
-const TextareaContainer = styled.div`
+const InputContainer = styled.div`
   flex: 1;
 `;
 
-const StyledTextarea = styled.textarea`
+const StyledInput = styled.input`
   width: 100%;
   padding: 12px;
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: ${props => props.theme.borderRadius.medium};
   font-family: inherit;
-  resize: none;
   
   &:focus {
     outline: none;
@@ -62,7 +61,7 @@ const IconButton = styled.button`
 const MessageInput = ({ 
   onSendMessage, 
   onSaveConversation,
-  placeholder = 'Type your message...'
+  placeholder = 'Message Bot AI...'
 }) => {
   const [message, setMessage] = useState('');
 
@@ -78,20 +77,20 @@ const MessageInput = ({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <TextareaContainer>
-        <StyledTextarea
+      <InputContainer>
+        <StyledInput
+          type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={placeholder}
-          rows={2}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter') {
               e.preventDefault();
               handleSubmit(e);
             }
           }}
         />
-      </TextareaContainer>
+      </InputContainer>
       <ButtonsContainer>
         <IconButton
           type="button"

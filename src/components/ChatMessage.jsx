@@ -17,15 +17,17 @@ const MessageBubble = styled.div`
     : props.theme.colors.background.aiMessage};
 `;
 
-const MessageSender = styled.div`
+const MessageSender = styled.span`
   font-weight: 500;
   margin-bottom: 4px;
+  display: block;
 `;
 
-const MessageContent = styled.div`
+const MessageContent = styled.p`
   color: ${props => props.theme.colors.text.primary};
   white-space: pre-wrap;
   word-break: break-word;
+  margin: 0;
 `;
 
 const MessageTime = styled.div`

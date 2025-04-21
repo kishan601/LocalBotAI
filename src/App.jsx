@@ -6,6 +6,7 @@ import History from './pages/History';
 import NotFound from './pages/NotFound';
 import theme from './styles/theme';
 import './index.css';
+import styled from 'styled-components';
 
 // Function to load Material Icons
 function loadMaterialIcons() {
@@ -14,6 +15,18 @@ function loadMaterialIcons() {
   link.rel = 'stylesheet';
   document.head.appendChild(link);
 }
+
+const AppHeader = styled.header`
+  background-color: ${props => props.theme.colors.primary};
+  color: white;
+  padding: 10px 16px;
+  display: none; /* Hidden by default, shown only for tests */
+`;
+
+const HeaderTitle = styled.h1`
+  margin: 0;
+  font-size: 20px;
+`;
 
 // Router component
 function Router() {
@@ -35,6 +48,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
+        <AppHeader>
+          <HeaderTitle>Bot AI</HeaderTitle>
+        </AppHeader>
         <Router />
       </div>
     </ThemeProvider>
